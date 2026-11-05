@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       is_verified: {
         type: Sequelize.STRING(1),
-        comments: ["1=active,2=inactive"],
+        comments: ["0=Not Verified,1=Verified"],
       },
       created_at: {
         type: Sequelize.DATE,
@@ -45,30 +45,34 @@ module.exports = (sequelize, Sequelize) => {
     },
   );
 
-  const OtpModel = sequelize.define("otpmodel", {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
+  const OtpModel = sequelize.define(
+    "otpmodel",
+    {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+      },
+      otp: {
+        type: Sequelize.INTEGER,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+      },
     },
-    user_id: {
-      type: Sequelize.INTEGER,
-    },
-    otp: {
-      type: Sequelize.INTEGER,
-    },
-    created_at: {
-      type: Sequelize.DATE,
-    },
-    updated_at: {
-      type: Sequelize.DATE,
-    },
-  },  {
+    {
       tableName: "otp",
       timeStamps: true,
       createdAt: "created_at",
       updatedAt: "updated_at",
-    },);
+    },
+  );
 
-  return { User,OtpModel };
+  return { User, OtpModel };
 };

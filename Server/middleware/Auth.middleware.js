@@ -10,3 +10,5 @@ const matchPassword = async (password, existingPassword) => {
   const isMatch = await bcrypt.compare(password, existingPassword);
   return isMatch;
 };
+
+module.exports={hashedPassword,matchPassword};
